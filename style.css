@@ -1,0 +1,91 @@
+/* Allgemeine Grundstyles */
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    padding: 0;
+    background: #f5f5f5;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  /* Label und Input nebeneinander für größere Bildschirme */
+  .form-group label {
+    display: inline-block;
+    width: 200px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  /* Input, Select, Button, Checkbox ... */
+  input[type="date"],
+  input[type="number"],
+  select,
+  input[type="text"] {
+    padding: 5px;
+    margin-right: 10px;
+    width: 200px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  /* Checkbox ohne extra Breite */
+  #vomited {
+    width: auto;
+    margin-top: 7px;
+  }
+  
+  /* Slider */
+  #medicationTime {
+    width: 200px;
+    margin-right: 10px;
+  }
+  
+  /* Diagramm-Container */
+  .charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  
+  .charts-container canvas {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    max-width: 400px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Responsives Design für kleinere Bildschirme */
+  @media only screen and (max-width: 600px) {
+    .form-group label {
+      width: auto;
+      display: block;
+      margin-bottom: 5px;
+    }
+  
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    #medicationTime {
+      width: 100%;
+    }
+  }
+  

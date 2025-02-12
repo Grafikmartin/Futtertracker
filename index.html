@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bolle - Futter- & Gesundheitsprotokoll</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Futter- & Gesundheitsprotokoll für Bolle</h1>
+  
+  <!-- Formular für Dateneingabe -->
+  <form id="entryForm">
+    <!-- Datum auswählen -->
+    <div class="form-group">
+      <label for="entryDate">Datum:</label>
+      <input type="date" id="entryDate" name="entryDate" required />
+    </div>
+    
+    <!-- Futtertyp -->
+    <div class="form-group">
+      <label for="feedType">Futterart:</label>
+      <select id="feedType" name="feedType">
+        <option value="trocken">Trocken</option>
+        <option value="nass">Nass</option>
+        <option value="beides">Beides</option>
+      </select>
+    </div>
+    
+    <!-- Stuhlgang (Bewertung 1-5) -->
+    <div class="form-group">
+      <label for="stoolQuality">Stuhlgang (1 = schlecht, 5 = sehr gut):</label>
+      <input
+        type="number"
+        id="stoolQuality"
+        name="stoolQuality"
+        min="1"
+        max="5"
+        placeholder="z.B. 3"
+      />
+    </div>
+    
+    <!-- Erbrochen -->
+    <div class="form-group">
+      <label for="vomited">Erbrochen?</label>
+      <input type="checkbox" id="vomited" name="vomited" />
+    </div>
+    
+    <!-- Medizin-Name -->
+    <div class="form-group">
+      <label for="medicationName">Medizin (optional):</label>
+      <input
+        type="text"
+        id="medicationName"
+        name="medicationName"
+        placeholder="Name der Medizin"
+      />
+    </div>
+
+    <!-- Zeitpunkt der Medikamentengabe (Slider 1-24) -->
+    <div class="form-group">
+      <label for="medicationTime">Medikamentenzeit (Stunde):</label>
+      <input
+        type="range"
+        id="medicationTime"
+        name="medicationTime"
+        min="1"
+        max="24"
+        value="12"
+        oninput="updateSliderOutput(this.value)"
+      />
+      <span id="sliderOutput">12</span> Uhr
+    </div>
+
+    <!-- Submit-Button -->
+    <button type="submit">Daten speichern</button>
+  </form>
+
+  <!-- Diagramme anzeigen -->
+  <div class="charts-container">
+    <canvas id="feedChart"></canvas>
+    <canvas id="stoolChart"></canvas>
+    <canvas id="vomitChart"></canvas>
+    <canvas id="medChart"></canvas>
+  </div>
+
+  <!-- Chart.js (Open Source, MIT-Lizenz) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Dein eigenes Skript -->
+  <script src="script.js"></script>
+</body>
+</html>
