@@ -10,25 +10,29 @@
   
   <!-- Formular für Dateneingabe -->
   <form id="entryForm">
-    <!-- Datum auswählen -->
+    <!-- Datum -->
     <div class="form-group">
       <label for="entryDate">Datum:</label>
       <input type="date" id="entryDate" name="entryDate" required />
     </div>
     
-    <!-- Futtertyp -->
+    <!-- Futtertyp (Nass als Standard), leere Option für "keine Änderung"? 
+         Du kannst auch direkt "nass" vorbelegen und immer überschreiben.
+         Hier nutzen wir "", um optional kein Update zu machen. -->
     <div class="form-group">
       <label for="feedType">Futterart:</label>
       <select id="feedType" name="feedType">
+        <option value="">(Keine Änderung)</option>
+        <option value="nass" selected>Nass</option>
         <option value="trocken">Trocken</option>
-        <option value="nass">Nass</option>
         <option value="beides">Beides</option>
       </select>
     </div>
     
-    <!-- Stuhlgang (Bewertung 1-5) -->
+    <!-- Stuhlgang (1=Sehr gut, 5=Schlecht) -->
+    <!-- Leer lassen => keine Änderung -->
     <div class="form-group">
-      <label for="stoolQuality">Stuhlgang (1 = schlecht, 5 = sehr gut):</label>
+      <label for="stoolQuality">Stuhlgang (1=Sehr gut, 5=Schlecht):</label>
       <input
         type="number"
         id="stoolQuality"
@@ -39,43 +43,47 @@
       />
     </div>
     
-    <!-- Erbrochen -->
+    <!-- Erbrochen als Checkbox (ja/nein). 
+         Überschreibt den bisherigen Wert immer. -->
     <div class="form-group">
       <label for="vomited">Erbrochen?</label>
-      <input type="checkbox" id="vomited" name="vomited" />
+      <input
+        type="checkbox"
+        id="vomited"
+        name="vomited"
+      />
     </div>
     
-    <!-- Medizin-Name -->
+    <!-- Medikamente -->
     <div class="form-group">
-      <label for="medicationName">Medizin (optional):</label>
+      <label for="pantoprazolCount">Pantoprazol (20 mg/Tag):</label>
       <input
-        type="text"
-        id="medicationName"
-        name="medicationName"
-        placeholder="Name der Medizin"
+        type="number"
+        id="pantoprazolCount"
+        name="pantoprazolCount"
+        min="0"
+        max="10"
+        placeholder="z.B. 1"
       />
     </div>
-
-    <!-- Zeitpunkt der Medikamentengabe (Slider 1-24) -->
+    
     <div class="form-group">
-      <label for="medicationTime">Medikamentenzeit (Stunde):</label>
+      <label for="sucrabestCount">Sucrabest (1 g/Tag):</label>
       <input
-        type="range"
-        id="medicationTime"
-        name="medicationTime"
-        min="1"
-        max="24"
-        value="12"
-        oninput="updateSliderOutput(this.value)"
+        type="number"
+        id="sucrabestCount"
+        name="sucrabestCount"
+        min="0"
+        max="10"
+        placeholder="z.B. 2"
       />
-      <span id="sliderOutput">12</span> Uhr
     </div>
 
     <!-- Submit-Button -->
     <button type="submit">Daten speichern</button>
   </form>
 
-  <!-- Diagramme anzeigen -->
+  <!-- Diagramme: (1) Futter, (2) Stuhlgang, (3) Erbrochen, (4) Medikamente -->
   <div class="charts-container">
     <canvas id="feedChart"></canvas>
     <canvas id="stoolChart"></canvas>
